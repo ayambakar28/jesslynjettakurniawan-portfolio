@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jesslyn Jetta Kurniawan | Mobile SE & Creative Designer Portfolio</title>
+    <meta name="description" content="Portfolio of Jesslyn Jetta Kurniawan - BINUS University Computer Science student specializing in Software Engineering (Mobile Solution) and Creative Graphic Design. Open for internship opportunities.">
+    <meta name="keywords" content="Jesslyn Jetta Kurniawan, BINUS University, Computer Science, Mobile Solution, Flutter, Swift, Dart, Graphic Design, Internship">
+    
+    <!-- Open Graph / Meta Social Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jesslyn Jetta Kurniawan | Mobile SE & Creative Designer Portfolio">
+    <meta property="og:description" content="BINUS University Computer Science student specializing in Mobile Solution & Graphic Design. Ready for Enrichment Internship.">
+    
+    <!-- Favicon (JJK Monogram) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%238A5082'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='42' font-weight='bold' fill='%23FFFFFF'>JJK</text></svg>">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js for Interactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            coral: '#FF7B89',
+                            plum: '#8A5082',
+                            slateviolet: '#6F5F90',
+                            blue: '#758EB7',
+                            iceblue: '#A5CAD2',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8FAFC;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #A5CAD2;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #758EB7;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(117, 142, 183, 0.20);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(117, 142, 183, 0.15);
+        }
+
+        .gradient-text-brand {
+            background: linear-gradient(135deg, #FF7B89 0%, #8A5082 50%, #6F5F90 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg-brand {
+            background: linear-gradient(135deg, #FF7B89 0%, #8A5082 100%);
+        }
+
+        .gradient-border-avatar {
+            background: linear-gradient(135deg, #FF7B89, #8A5082, #758EB7, #A5CAD2);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-700 font-sans selection:bg-brand-coral selection:text-white antialiased overflow-x-hidden" x-data="portfolioApp()">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full gradient-bg-brand p-[2px] shadow-md transition-transform duration-300 group-hover:scale-105">
+                    <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+                        <span class="font-mono font-bold text-xs text-brand-plum">JJK</span>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-lg tracking-tight text-slate-800 group-hover:text-brand-plum transition-colors">
+                        Jesslyn Jetta<span class="text-brand-coral">.K</span>
+                    </span>
+                    <span class="text-[10px] font-mono text-slate-500 tracking-wider uppercase">Mobile SE & Creative Designer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+                <a href="#about" class="hover:text-brand-plum transition-colors">About</a>
+                <a href="#skills" class="hover:text-brand-plum transition-colors">Skills</a>
+                <a href="#portfolio" class="hover:text-brand-plum transition-colors">Portfolio</a>
+                <a href="#contact" class="px-5 py-2.5 rounded-full gradient-bg-brand text-white font-semibold shadow-md hover:shadow-lg hover:opacity-95 transition-all">
+                    Contact Me
+                </a>
+            </nav>
+
+            <!-- Mobile Hamburger Button -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-slate-700 hover:text-brand-plum p-2 focus:outline-none" aria-label="Toggle Navigation Menu">
+                <i data-lucide="menu" x-show="!mobileMenuOpen"></i>
+                <i data-lucide="x" x-show="mobileMenuOpen" style="display:none;"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div x-show="mobileMenuOpen" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-4"
+             class="md:hidden glass-card border-b border-slate-200 px-6 py-6 space-y-4 shadow-xl" style="display: none;">
+            <a @click="mobileMenuOpen = false" href="#about" class="block text-slate-700 hover:text-brand-plum font-semibold py-2">About</a>
+            <a @click="mobileMenuOpen = false" href="#skills" class="block text-slate-700 hover:text-brand-plum font-semibold py-2">Skills</a>
+            <a @click="mobileMenuOpen = false" href="#portfolio" class="block text-slate-700 hover:text-brand-plum font-semibold py-2">Portfolio</a>
+            <a @click="mobileMenuOpen = false" href="#contact" class="block text-center w-full py-3 rounded-full gradient-bg-brand text-white font-semibold">Contact Me</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden bg-white">
+        <!-- Ambient Glowing Orbs -->
+        <div class="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-iceblue/30 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[450px] h-[450px] bg-brand-coral/20 rounded-full blur-[130px] pointer-events-none"></div>
+        <div class="absolute top-10 right-1/3 w-[350px] h-[350px] bg-brand-plum/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            
+            <!-- Circular Profile Picture Frame -->
+            <div class="relative w-44 h-44 sm:w-52 sm:h-52 mx-auto mb-8">
+                <div class="w-full h-full rounded-full p-1.5 gradient-border-avatar shadow-xl transition-transform duration-500 hover:scale-105">
+                    <img src="assets/images/profile.jpg" 
+                         alt="Jesslyn Jetta Kurniawan" 
+                         class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner"
+                         onerror="this.src='profile.jpg'; this.onerror=function(){this.src='https://placehold.co/400x400/8A5082/ffffff?text=Jesslyn+Jetta';}">
+                </div>
+                <!-- Status Ping Indicator -->
+                <span class="absolute bottom-2 right-2 flex h-5 w-5" title="Actively Seeking BINUS 3+1 Internship Opportunity">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-5 w-5 bg-emerald-500 border-2 border-white"></span>
+                </span>
+            </div>
+
+            <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-card border border-brand-blue/30 shadow-sm mb-6">
+                <span class="text-xs sm:text-sm font-semibold text-brand-plum flex items-center gap-2">
+                    <i data-lucide="graduation-cap" class="w-4 h-4 text-brand-coral"></i>
+                    BINUS University • Computer Science
+                </span>
+                <span class="text-slate-300">|</span>
+                <span class="text-xs sm:text-sm font-mono text-brand-slateviolet font-semibold">
+                    Software Engineering (Mobile Solution)
+                </span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight text-slate-800 mb-6">
+                Hi, I'm <span class="gradient-text-brand">Jesslyn Jetta Kurniawan</span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-base sm:text-lg text-slate-600 mb-10 leading-relaxed font-normal">
+                Connecting technical logic and artistic creativity through <strong class="text-brand-plum">Mobile Solution Engineering</strong>, modern web development, and expressive graphic design.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-full gradient-bg-brand text-white font-bold hover:shadow-lg hover:shadow-brand-coral/30 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="briefcase" class="w-5 h-5"></i>
+                    <span>Internship Opportunity</span>
+                </a>
+                <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-full glass-card hover:bg-slate-100 text-slate-800 font-semibold border border-brand-blue/30 shadow-sm transition-all flex items-center justify-center gap-2">
+                    <span>Explore Portfolio</span>
+                    <i data-lucide="arrow-down" class="w-4 h-4 text-brand-plum"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto text-left">
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-brand-coral transition-colors">
+                    <div class="flex items-center gap-2 text-brand-coral font-bold text-xs font-mono mb-1">
+                        <i data-lucide="smartphone" class="w-4 h-4"></i> MOBILE & CODE
+                    </div>
+                    <p class="text-xs font-semibold text-slate-800">Flutter, SWIFT, Dart, Python, SQL, HTML, JSON</p>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-brand-plum transition-colors">
+                    <div class="flex items-center gap-2 text-brand-plum font-bold text-xs font-mono mb-1">
+                        <i data-lucide="palette" class="w-4 h-4"></i> DESIGN & UI/UX
+                    </div>
+                    <p class="text-xs font-semibold text-slate-800">Figma, XD, Photoshop, Illustrator, Canva</p>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-brand-slateviolet transition-colors">
+                    <div class="flex items-center gap-2 text-brand-slateviolet font-bold text-xs font-mono mb-1">
+                        <i data-lucide="video" class="w-4 h-4"></i> MOTION & MEDIA
+                    </div>
+                    <p class="text-xs font-semibold text-slate-800">After Effects, Premiere Pro, Merchandise Design</p>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-brand-blue transition-colors">
+                    <div class="flex items-center gap-2 text-brand-blue font-bold text-xs font-mono mb-1">
+                        <i data-lucide="table" class="w-4 h-4"></i> DATA & SPREADSHEETS
+                    </div>
+                    <p class="text-xs font-semibold text-slate-800">Microsoft Excel & Google Sheets</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Visual Info Card -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card p-8 rounded-3xl border border-slate-200 shadow-lg relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-iceblue/40 rounded-full blur-2xl"></div>
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl gradient-bg-brand flex items-center justify-center text-white shadow-md font-bold text-lg">
+                                JJK
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-lg">Jesslyn Jetta Kurniawan</h4>
+                                <p class="text-xs font-mono text-brand-plum font-semibold">BINUS Computer Science</p>
+                                <p class="text-xs text-slate-500">Mobile Solution Track</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 pt-4 border-t border-slate-200/80">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-slate-600">Specialization:</span>
+                                <span class="font-semibold text-slate-800">Software Engineering</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-slate-600">Program Track:</span>
+                                <span class="font-semibold text-brand-plum">Mobile Professional Solution</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-slate-600">Creative Domain:</span>
+                                <span class="font-semibold text-brand-coral">UI/UX, Visual Art & Merch</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-slate-600">Enrichment Status:</span>
+                                <span class="font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Seeking 3+1 Internship</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Description Section -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 text-brand-coral text-sm font-mono font-bold uppercase tracking-wider">
+                        <i data-lucide="user-check" class="w-4 h-4"></i>
+                        <span>About Me</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 tracking-tight">
+                        Bridging Technology & Creative Artistry
+                    </h2>
+                    
+                    <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <p class="text-slate-700 leading-relaxed text-base sm:text-lg">
+                            Hi! I'm <strong>Jesslyn Jetta Kurniawan</strong>, a Computer Science student at <strong>BINUS University</strong> specializing in <strong>Software Engineering through the Mobile Professional Solution program</strong>.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            I enjoy combining technology and creativity through software development, web and application design, digital and traditional art, and merchandise design. I’m passionate about learning new skills and turning creative ideas into meaningful digital experiences.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <span class="px-3 py-1.5 rounded-xl bg-brand-coral/10 text-brand-coral text-xs font-mono font-bold">#MobileDevelopment</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-brand-plum/10 text-brand-plum text-xs font-mono font-bold">#GraphicDesign</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-brand-slateviolet/10 text-brand-slateviolet text-xs font-mono font-bold">#DigitalArt</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-brand-blue/10 text-brand-blue text-xs font-mono font-bold">#UIUXDesign</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 relative bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-plum text-sm font-mono font-bold uppercase tracking-wider">Skill Set Matrix</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mt-2">Technical & Creative Capabilities</h2>
+                <p class="text-slate-600 mt-3">A dual-threat skillset combining mobile software development, full design suites, motion graphics, and spreadsheet analytics.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- 1. Mobile & Coding -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-coral/40 transition-all">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3.5 rounded-2xl bg-brand-coral/10 text-brand-coral">
+                            <i data-lucide="smartphone" class="w-7 h-7"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">Mobile & Coding</h3>
+                            <p class="text-xs text-slate-500 font-mono">Software Engineering</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span class="flex items-center gap-2"><i data-lucide="layers" class="w-4 h-4 text-brand-coral"></i> Flutter & Dart</span>
+                                <span class="text-brand-coral font-mono text-xs">Proficient</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Cross-platform app development with Dart & clean component state architecture.</p>
+                        </div>
+
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span class="flex items-center gap-2"><i data-lucide="apple" class="w-4 h-4 text-brand-plum"></i> SWIFT</span>
+                                <span class="text-brand-plum font-mono text-xs">Proficient</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Native iOS mobile solution development using Swift and SwiftUI views.</p>
+                        </div>
+
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span class="flex items-center gap-2"><i data-lucide="code" class="w-4 h-4 text-brand-slateviolet"></i> Python, HTML & JSON</span>
+                                <span class="text-brand-slateviolet font-mono text-xs">Proficient</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Python scripting, HTML web structure, and JSON API data formatting.</p>
+                        </div>
+
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span class="flex items-center gap-2"><i data-lucide="database" class="w-4 h-4 text-brand-blue"></i> SQL</span>
+                                <span class="text-brand-blue font-mono text-xs">Proficient</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Relational database querying, schema design, and data joins.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. UI/UX & Graphic Design -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-plum/40 transition-all">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3.5 rounded-2xl bg-brand-plum/10 text-brand-plum">
+                            <i data-lucide="palette" class="w-7 h-7"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">Design & Fine Art</h3>
+                            <p class="text-xs text-slate-500 font-mono">Visuals & Merchandise</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span class="flex items-center gap-2"><i data-lucide="figma" class="w-4 h-4 text-brand-coral"></i> Figma & Adobe XD</span>
+                                <span class="text-brand-coral font-mono text-xs">Proficient</span>
+                            </div>
+                            <p class="text-xs text-slate-500">UI/UX prototyping, layout systems, mobile app wireframing.</p>
+                        </div>
+
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span class="flex items-center gap-2"><i data-lucide="image" class="w-4 h-4 text-brand-plum"></i> Photoshop & Illustrator</span>
+                                <span class="text-brand-plum font-mono text-xs">Proficient</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Vector artwork, photo editing, brand identity & graphic assets.</p>
+                        </div>
+
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span class="flex items-center gap-2"><i data-lucide="brush" class="w-4 h-4 text-brand-slateviolet"></i> Digital/Traditional & Merch</span>
+                                <span class="text-brand-slateviolet font-mono text-xs">Creative</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Custom merchandise designs, traditional sketching, digital artwork.</p>
+                        </div>
+
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span class="flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4 text-brand-blue"></i> Canva</span>
+                                <span class="text-brand-blue font-mono text-xs">Proficient</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Marketing collateral, social media designs & slide decks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Motion Graphics & Spreadsheets -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-blue/40 transition-all">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3.5 rounded-2xl bg-brand-blue/10 text-brand-blue">
+                            <i data-lucide="video" class="w-7 h-7"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">Motion & Data</h3>
+                            <p class="text-xs text-slate-500 font-mono">Video & Spreadsheets</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span class="flex items-center gap-2"><i data-lucide="film" class="w-4 h-4 text-brand-coral"></i> Adobe After Effects</span>
+                                <span class="text-brand-coral font-mono text-xs">Proficient</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Motion graphics, animation effects, video transitions & UI motion.</p>
+                        </div>
+
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span class="flex items-center gap-2"><i data-lucide="video" class="w-4 h-4 text-brand-plum"></i> Adobe Premiere Pro</span>
+                                <span class="text-brand-plum font-mono text-xs">Proficient</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Video editing, audio sync, promo video cutting & post-production.</p>
+                        </div>
+
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span class="flex items-center gap-2"><i data-lucide="table" class="w-4 h-4 text-brand-blue"></i> MS Excel & Google Sheets</span>
+                                <span class="text-brand-blue font-mono text-xs">Proficient</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Data organization, lookup functions, pivot tables & cloud reports.</p>
+                        </div>
+
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span class="flex items-center gap-2"><i data-lucide="git-branch" class="w-4 h-4 text-slate-700"></i> Git & Version Control</span>
+                                <span class="text-slate-700 font-mono text-xs">Familiar</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Source code management and project repository tracking.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Soft Skills & Professional Strengths -->
+            <div class="mt-16 pt-12 border-t border-slate-100">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-brand-coral text-xs font-mono font-bold uppercase tracking-wider">Interpersonal & Work Ethic</span>
+                    <h3 class="text-2xl font-bold text-slate-800 mt-1">Soft Skills & Professional Strengths</h3>
+                    <p class="text-slate-500 text-sm mt-1">Essential interpersonal qualities that drive smooth project execution and collaborative success.</p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-coral hover:bg-white transition-all group">
+                        <div class="w-10 h-10 rounded-xl bg-brand-coral/10 text-brand-coral flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="puzzle" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">Problem Solving</h4>
+                        <p class="text-xs text-slate-500 mt-1">Analytical approach to debug complex logic and overcome UI/UX challenges.</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-plum hover:bg-white transition-all group">
+                        <div class="w-10 h-10 rounded-xl bg-brand-plum/10 text-brand-plum flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">Teamwork</h4>
+                        <p class="text-xs text-slate-500 mt-1">Thrives in cross-functional team environments, aligning code and design goals.</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-slateviolet hover:bg-white transition-all group">
+                        <div class="w-10 h-10 rounded-xl bg-brand-slateviolet/10 text-brand-slateviolet flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="message-square" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">Communication</h4>
+                        <p class="text-xs text-slate-500 mt-1">Articulates technical concepts and design ideas clearly across stakeholders.</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-blue hover:bg-white transition-all group">
+                        <div class="w-10 h-10 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">Creativity</h4>
+                        <p class="text-xs text-slate-500 mt-1">Innovative thinking for artwork, merchandise, motion graphics, and app design.</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-coral hover:bg-white transition-all group">
+                        <div class="w-10 h-10 rounded-xl bg-brand-coral/10 text-brand-coral flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="compass" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">Adaptability</h4>
+                        <p class="text-xs text-slate-500 mt-1">Quick learner in adopting new frameworks, design tools, and team workflows.</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-plum hover:bg-white transition-all group">
+                        <div class="w-10 h-10 rounded-xl bg-brand-plum/10 text-brand-plum flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="brain" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">Critical Thinking</h4>
+                        <p class="text-xs text-slate-500 mt-1">Evaluates software architecture choices and user experiences objectively.</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-slateviolet hover:bg-white transition-all group">
+                        <div class="w-10 h-10 rounded-xl bg-brand-slateviolet/10 text-brand-slateviolet flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="check-circle" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">Attention to Detail</h4>
+                        <p class="text-xs text-slate-500 mt-1">High precision in pixel-perfect layouts, vector artwork, and clean code.</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-blue hover:bg-white transition-all group">
+                        <div class="w-10 h-10 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="kanban" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">Project Management</h4>
+                        <p class="text-xs text-slate-500 mt-1">Organized execution of timelines, deliverables, and project milestones.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24 relative bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-brand-plum text-sm font-mono font-bold uppercase tracking-wider">Featured Portfolio Work</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mt-2">Selected Projects</h2>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2 p-1.5 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                    <button @click="activeFilter = 'all'" 
+                            :class="activeFilter === 'all' ? 'gradient-bg-brand text-white shadow-md' : 'text-slate-600 hover:text-slate-900'"
+                            class="px-5 py-2 rounded-xl text-sm font-bold transition-all">
+                        All Works
+                    </button>
+                    <button @click="activeFilter = 'mobile'" 
+                            :class="activeFilter === 'mobile' ? 'gradient-bg-brand text-white shadow-md' : 'text-slate-600 hover:text-slate-900'"
+                            class="px-5 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2">
+                        <i data-lucide="smartphone" class="w-4 h-4"></i>
+                        <span>Mobile & Engineering</span>
+                    </button>
+                    <button @click="activeFilter = 'design'" 
+                            :class="activeFilter === 'design' ? 'gradient-bg-brand text-white shadow-md' : 'text-slate-600 hover:text-slate-900'"
+                            class="px-5 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2">
+                        <i data-lucide="palette" class="w-4 h-4"></i>
+                        <span>Design & Visual Art</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Project Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <template x-for="project in filteredProjects" :key="project.id">
+                    <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-coral/40 transition-all duration-300 flex flex-col group">
+                        
+                        <div class="relative overflow-hidden aspect-video bg-slate-100">
+                            <img :src="project.image" 
+                                 :alt="project.title" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                 onerror="this.src='https://placehold.co/600x400/8A5082/ffffff?text=Project+Preview'">
+                            
+                            <div class="absolute top-4 left-4">
+                                <span x-text="project.category === 'mobile' ? 'Mobile / Code' : 'Design & Visuals'"
+                                      :class="project.category === 'mobile' ? 'bg-brand-plum text-white' : 'bg-brand-coral text-white'"
+                                      class="text-[11px] font-mono font-bold px-3 py-1 rounded-full shadow-md">
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 group-hover:text-brand-plum transition-colors" x-text="project.title"></h3>
+                                <p class="text-slate-600 text-sm mt-2 line-clamp-2 leading-relaxed" x-text="project.description"></p>
+                            </div>
+
+                            <div class="mt-6">
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    <template x-for="tag in project.tags">
+                                        <span class="text-[11px] font-mono text-slate-600 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200" x-text="tag"></span>
+                                    </template>
+                                </div>
+
+                                <button @click="openModal(project)" class="w-full py-2.5 rounded-xl border border-slate-300 hover:gradient-bg-brand hover:text-white hover:border-transparent text-slate-700 font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                                    <span>Project Details</span>
+                                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-brand-plum text-sm font-mono font-bold uppercase tracking-wider">Get In Touch</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 tracking-tight">Let's Connect & Collaborate!</h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        Are you an HR recruiter, Tech Lead, or Creative Director looking for a BINUS Computer Science intern skilled in Mobile Development (Flutter/Swift/Dart), Web/SQL, Graphic Design, or Video Editing? Let's connect!
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
+                            <div class="p-3 rounded-xl bg-brand-coral/10 text-brand-coral">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-mono text-slate-400">EMAIL</p>
+                                <a href="mailto:jesslyn.kurniawan@binus.ac.id" class="text-sm font-bold text-slate-800 hover:text-brand-plum transition-colors">jesslyn.kurniawan@binus.ac.id</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
+                            <div class="p-3 rounded-xl bg-brand-plum/10 text-brand-plum">
+                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-mono text-slate-400">LINKEDIN</p>
+                                <a href="https://linkedin.com/in/jesslyn-jetta" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-slate-800 hover:text-brand-plum transition-colors">linkedin.com/in/jesslyn-jetta</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-xl">
+                        <form @submit.prevent="sendMessage()" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Your Name / Company</label>
+                                    <input type="text" x-model="form.name" required class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 focus:outline-none focus:border-brand-coral transition-colors" placeholder="e.g. Tech Hiring Team">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Contact Email</label>
+                                    <input type="email" x-model="form.email" required class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 focus:outline-none focus:border-brand-coral transition-colors" placeholder="name@company.com">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Inquiry Focus</label>
+                                <select x-model="form.category" class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 focus:outline-none focus:border-brand-coral transition-colors">
+                                    <option value="internship">BINUS Internship Offer</option>
+                                    <option value="mobile">Mobile Solution / Flutter / Swift Development</option>
+                                    <option value="graphic">Graphic Design / UI/UX / Merchandise Artwork</option>
+                                    <option value="video">Motion Graphics & Video Editing</option>
+                                    <option value="other">General Collaboration</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Message</label>
+                                <textarea x-model="form.message" rows="4" required class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 focus:outline-none focus:border-brand-coral transition-colors" placeholder="Tell me about the role or project..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 rounded-xl gradient-bg-brand text-white font-bold hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                <span>Send Message</span>
+                            </button>
+                        </form>
+
+                        <div x-show="toastShow" 
+                             x-transition 
+                             class="mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-center gap-3"
+                             style="display: none;">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600"></i>
+                            <span>Message sent successfully! I will reply as soon as possible.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-100 border-t border-slate-200 text-center text-slate-500 text-sm font-mono">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 Jesslyn Jetta Kurniawan • BINUS Computer Science Student.</p>
+            <p class="text-xs">Hosted on <span class="text-brand-coral font-bold">GitHub Pages</span> 🚀</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Project Modal -->
+    <div x-show="modalOpen" 
+         x-transition 
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm"
+         style="display: none;">
+        
+        <div @click.away="modalOpen = false" class="bg-white border border-slate-200 max-w-2xl w-full rounded-3xl p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto shadow-2xl">
+            <button @click="modalOpen = false" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 p-2" aria-label="Close Modal">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <template x-if="selectedProject">
+                <div class="space-y-6">
+                    <img :src="selectedProject.image" :alt="selectedProject.title" class="w-full aspect-video object-cover rounded-2xl border border-slate-200">
+                    
+                    <div>
+                        <span x-text="selectedProject.category === 'mobile' ? 'Mobile App & Engineering' : 'Graphic Design & Fine Art'" class="text-xs font-mono text-brand-plum font-bold uppercase tracking-wider"></span>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1" x-text="selectedProject.title"></h3>
+                    </div>
+
+                    <p class="text-slate-600 leading-relaxed text-sm sm:text-base" x-text="selectedProject.fullDescription || selectedProject.description"></p>
+
+                    <div>
+                        <h4 class="text-xs font-mono text-slate-500 uppercase tracking-wider mb-2">Technologies & Creative Tools</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <template x-for="tag in selectedProject.tags">
+                                <span class="text-xs font-mono bg-slate-100 text-slate-700 border border-slate-200 px-3 py-1 rounded-lg" x-text="tag"></span>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex gap-4">
+                        <a :href="selectedProject.link || '#'" target="_blank" class="flex-1 py-3 rounded-xl gradient-bg-brand text-white font-bold text-center text-sm transition-all shadow-md flex items-center justify-center gap-2">
+                            <span>View Project / Live Link</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('portfolioApp', () => ({
+                mobileMenuOpen: false,
+                activeFilter: 'all',
+                modalOpen: false,
+                selectedProject: null,
+                toastShow: false,
+
+                form: {
+                    name: '',
+                    email: '',
+                    category: 'internship',
+                    message: ''
+                },
+
+                // Portfolio projects list - easily customizable
+                projects: [
+                    {
+                        id: 1,
+                        title: 'Flutter & Dart Mobile Campus App',
+                        category: 'mobile',
+                        image: 'assets/images/project-1.jpg',
+                        description: 'Cross-platform mobile application developed using Flutter, Dart, and JSON API integration.',
+                        fullDescription: 'Mobile solution project featuring Dart state management, custom UI design system from Figma, and clean JSON payload data processing.',
+                        tags: ['Flutter', 'Dart', 'JSON', 'Mobile SE'],
+                        link: 'https://github.com'
+                    },
+                    {
+                        id: 2,
+                        title: 'SwiftUI Native Mobile App',
+                        category: 'mobile',
+                        image: 'assets/images/project-2.jpg',
+                        description: 'Native iOS application built with SWIFT for mobile event tracking & user dashboards.',
+                        fullDescription: 'Software Engineering Mobile Solution track project featuring clean SwiftUI views, responsive layouts, and local persistent data.',
+                        tags: ['SWIFT', 'SwiftUI', 'iOS Mobile', 'SQL'],
+                        link: 'https://github.com'
+                    },
+                    {
+                        id: 3,
+                        title: 'Python & SQL Web Data Handler',
+                        category: 'mobile',
+                        image: 'assets/images/project-3.jpg',
+                        description: 'Interactive HTML & Web interface integrated with Python & SQL database queries.',
+                        fullDescription: 'Web-oriented software engineering project utilizing HTML structure, JSON API formats, and SQL database querying for seamless data management.',
+                        tags: ['Python', 'SQL', 'HTML', 'JSON'],
+                        link: 'https://github.com'
+                    },
+                    {
+                        id: 4,
+                        title: 'Digital Artwork & Merchandise Design',
+                        category: 'design',
+                        image: 'assets/images/project-4.jpg',
+                        description: 'Custom merchandise artwork collection crafted with Adobe Illustrator & Photoshop.',
+                        fullDescription: 'Creative visual design showcase featuring original vector illustrations, merchandise mockups (apparel, keychains, stickers), and branding artwork.',
+                        tags: ['Illustrator', 'Photoshop', 'Merchandise', 'Digital Art'],
+                        link: 'https://behance.net'
+                    },
+                    {
+                        id: 5,
+                        title: 'After Effects & Premiere Motion Reel',
+                        category: 'design',
+                        image: 'assets/images/project-5.jpg',
+                        description: 'Promotional video and UI motion graphics produced in After Effects & Premiere Pro.',
+                        fullDescription: 'Dynamic video reel featuring custom motion graphic transitions, logo reveals in After Effects, and timeline editing in Premiere Pro.',
+                        tags: ['After Effects', 'Premiere Pro', 'Motion Graphics', 'Video'],
+                        link: 'https://youtube.com'
+                    },
+                    {
+                        id: 6,
+                        title: 'Mobile UI Kit & Design System',
+                        category: 'design',
+                        image: 'assets/images/project-6.jpg',
+                        description: 'Comprehensive UI System designed for a mobile app in Figma & Adobe XD.',
+                        fullDescription: 'Complete user interface design system with reusable components, color palette tokens, typography rules, and interactive prototypes.',
+                        tags: ['Figma', 'Adobe XD', 'UI/UX Design', 'Canva'],
+                        link: 'https://figma.com'
+                    }
+                ],
+
+                get filteredProjects() {
+                    if (this.activeFilter === 'all') return this.projects;
+                    return this.projects.filter(p => p.category === this.activeFilter);
+                },
+
+                openModal(project) {
+                    this.selectedProject = project;
+                    this.modalOpen = true;
+                },
+
+                sendMessage() {
+                    this.toastShow = true;
+                    this.form = { name: '', email: '', category: 'internship', message: '' };
+                    setTimeout(() => {
+                        this.toastShow = false;
+                    }, 4000);
+                }
+            }));
+        });
+
+        window.onload = function() {
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>

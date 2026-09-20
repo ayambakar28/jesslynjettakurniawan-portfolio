@@ -572,7 +572,7 @@
                             <img :src="project.image" 
                                  :alt="project.title" 
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                 onerror="this.src='https://placehold.co/600x400/8A5082/ffffff?text=Project+Preview'">
+                                 onerror="if(!this.dataset.tried){this.dataset.tried=1; if(this.src.endsWith('.jpg')){this.src=this.src.replace('.jpg','.png');}else if(this.src.endsWith('.png')){this.src=this.src.replace('.png','.jpg');}}else{this.src='https://placehold.co/600x400/8A5082/ffffff?text=Project+Preview';}">
                             
                             <div class="absolute top-4 left-4">
                                 <span x-text="project.category === 'mobile' ? 'Mobile / Code' : 'Design & Visuals'"
@@ -714,7 +714,8 @@
 
             <template x-if="selectedProject">
                 <div class="space-y-6">
-                    <img :src="selectedProject.image" :alt="selectedProject.title" class="w-full aspect-video object-cover rounded-2xl border border-slate-200">
+                    <img :src="selectedProject.image" :alt="selectedProject.title" class="w-full aspect-video object-cover rounded-2xl border border-slate-200"
+                         onerror="if(!this.dataset.tried){this.dataset.tried=1; if(this.src.endsWith('.jpg')){this.src=this.src.replace('.jpg','.png');}else if(this.src.endsWith('.png')){this.src=this.src.replace('.png','.jpg');}}else{this.src='https://placehold.co/600x400/8A5082/ffffff?text=Project+Preview';}">
                     
                     <div>
                         <span x-text="selectedProject.category === 'mobile' ? 'Mobile App & Engineering' : 'Graphic Design & Fine Art'" class="text-xs font-mono text-brand-plum font-bold uppercase tracking-wider"></span>
@@ -763,63 +764,62 @@
                 projects: [
                     {
                         id: 1,
-                        title: 'Flutter & Dart Mobile Campus App',
+                        title: 'Leaper Mobile Campus ',
                         category: 'mobile',
                         image: 'assets/images/project-1.jpg',
-                        description: 'Cross-platform mobile application developed using Flutter, Dart, and JSON API integration.',
-                        fullDescription: 'Mobile solution project featuring Dart state management, custom UI design system from Figma, and clean JSON payload data processing.',
+                        description: 'A learning management system built on the self hosting paradigm.',
+                        fullDescription: 'Leaper is a LMS that built on the self hosting paradigm, allowing anyone to pick up our system and run it for their own purposes. We built this system in hopes to be able to provide an easy to use LMS for anyone who may need it, and also as a personal set of goals to learn about software development, architecture, and modern tools used in software.',
                         tags: ['Flutter', 'Dart', 'JSON', 'Mobile SE'],
-                        link: 'https://github.com'
+                        link: 'https://drive.google.com/file/d/1KcaGoQTGBuE2WGkQmH7_l6JUeINDj92q/view?usp=drive_link'
                     },
                     {
                         id: 2,
-                        title: 'SwiftUI Native Mobile App',
+                        title: 'Genshin Import Mobile Application',
                         category: 'mobile',
                         image: 'assets/images/project-2.jpg',
-                        description: 'Native iOS application built with SWIFT for mobile event tracking & user dashboards.',
-                        fullDescription: 'Software Engineering Mobile Solution track project featuring clean SwiftUI views, responsive layouts, and local persistent data.',
-                        tags: ['SWIFT', 'SwiftUI', 'iOS Mobile', 'SQL'],
-                        link: 'https://github.com'
+                        description: 'Discover and import Genshin Impact character data with a clean SwiftUI interface and local SQL database.',
+                        fullDescription: 'Campus Project for a mobile application that allows users to discover and import Genshin Impact weapons and artifacts. The app features a clean SwiftUI interface and seamless integration with a local SQL database.',
+                        tags: ['SQL', 'Figma', 'flutter', 'Dart', 'json', 'html'],
+                        link: 'https://drive.google.com/file/d/1_x5_81ZOZsQp58_RooyBRe2LOHmpas9Q/view?usp=drive_link'
                     },
                     {
                         id: 3,
-                        title: 'Python & SQL Web Data Handler',
+                        title: 'NodeJS & SQL',
                         category: 'mobile',
                         image: 'assets/images/project-3.jpg',
-                        description: 'Interactive HTML & Web interface integrated with Python & SQL database queries.',
-                        fullDescription: 'Web-oriented software engineering project utilizing HTML structure, JSON API formats, and SQL database querying for seamless data management.',
-                        tags: ['Python', 'SQL', 'HTML', 'JSON'],
-                        link: 'https://github.com'
+                        description: 'Campus project with NodeJS backend, SQL database, and JSON API for data management.',
+                        fullDescription: '“Jomoro Koffee” menggunakan arsitektur microservice dengan 3 service utama yaitu, Auth Service, Product Service, dan Transaction Service. Setiap service berjalan sebagai project NestJS yang terpisah dan menggunakan Prisma ORM untuk koneksi database MySQL.',
+                        tags: ['NodeJS', 'SQL', 'HTML', 'JSON'],
+                        link: 'https://github.com/lalasha25/Jomoro-Koffee_SoftArch'
                     },
                     {
                         id: 4,
-                        title: 'Digital Artwork & Merchandise Design',
+                        title: 'Mobile UI application Design & Animation',
                         category: 'design',
-                        image: 'assets/images/project-4.jpg',
-                        description: 'Custom merchandise artwork collection crafted with Adobe Illustrator & Photoshop.',
-                        fullDescription: 'Creative visual design showcase featuring original vector illustrations, merchandise mockups (apparel, keychains, stickers), and branding artwork.',
-                        tags: ['Illustrator', 'Photoshop', 'Merchandise', 'Digital Art'],
-                        link: 'https://behance.net'
+                        image: 'assets/images/project-4.png',
+                        description: 'Leaper Project UI/UX design and motion graphics for a mobile application prototype.',
+                        fullDescription: 'UI/UX design and motion graphics for a mobile application prototype, created in Figma and Adobe Photoshop. Includes interactive prototypes, animated transitions, and visual design assets.',
+                        tags: ['Figma', 'Photoshop', 'Adobe', 'Video Editing', 'Motion Graphics'],
+                        link : 'https://drive.google.com/file/d/1xCPEJIxWgk8Y8TdPDOUz8bk0oD-_k1wd/view?usp=drive_link'
                     },
                     {
                         id: 5,
-                        title: 'After Effects & Premiere Motion Reel',
+                        title: 'Website & App design UI/UX',
                         category: 'design',
                         image: 'assets/images/project-5.jpg',
-                        description: 'Promotional video and UI motion graphics produced in After Effects & Premiere Pro.',
-                        fullDescription: 'Dynamic video reel featuring custom motion graphic transitions, logo reveals in After Effects, and timeline editing in Premiere Pro.',
-                        tags: ['After Effects', 'Premiere Pro', 'Motion Graphics', 'Video'],
-                        link: 'https://youtube.com'
+                        description: 'Website design for Campus Project.',
+                        fullDescription: 'Website design for Campus Project, featuring a modern, responsive layout and intuitive user experience.',
+                        tags: ['Figma', 'UI/UX Design'],
+                        link: 'https://docs.google.com/document/d/1JY27Sfqxu79C4UNzwNmKy7mEzjdsxaCTqbPvcZRMFr4/edit?usp=drive_link'
                     },
                     {
                         id: 6,
-                        title: 'Mobile UI Kit & Design System',
+                        title: 'Character & Merchandise Design',
                         category: 'design',
                         image: 'assets/images/project-6.jpg',
-                        description: 'Comprehensive UI System designed for a mobile app in Figma & Adobe XD.',
-                        fullDescription: 'Complete user interface design system with reusable components, color palette tokens, typography rules, and interactive prototypes.',
-                        tags: ['Figma', 'Adobe XD', 'UI/UX Design', 'Canva'],
-                        link: 'https://figma.com'
+                        description: 'Campus project character and merchandise design.',
+                        fullDescription: 'Campus project character and merchandise design, including vector illustrations, branding, and promotional materials.',
+                        tags: ['Illustration', 'Photoshop', 'Merchandise Design', 'character Design'],
                     }
                 ],
 
